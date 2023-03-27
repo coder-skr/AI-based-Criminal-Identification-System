@@ -221,7 +221,7 @@ def register(entries, required, menu_var):
             messagebox.showerror("Database Error", "Some error occured while storing data.")
 
 
-## update scrollregion when all widgets are in canvas
+## update scroll region when all widgets are in canvas
 def on_configure(event, canvas, win):
     canvas.configure(scrollregion=canvas.bbox('all'))
     canvas.itemconfig(win, width=event.width)
@@ -299,7 +299,7 @@ def getPage1():
            bg="#2196f3", fg="white", pady=10, padx=30, bd=0, highlightthickness=0, activebackground="#091428",
            activeforeground="white").pack(pady=25)
 
-
+#showing criminal profile
 def showCriminalProfile(name):
     top = tk.Toplevel(bg="#202d42")
     top.title("Criminal Profile")
@@ -329,6 +329,7 @@ def showCriminalProfile(name):
     info_frame = tk.Frame(content, bg="#202d42")
     info_frame.grid(row=0, column=1, sticky='w')
 
+    # display the retrieved data in the GUI
     for i, item in enumerate(crim_data.items()):
         tk.Label(info_frame, text=item[0], pady=15, fg="yellow", font="Arial 15 bold", bg="#202d42").grid(row=i, column=0, sticky='w')
         tk.Label(info_frame, text=":", fg="yellow", padx=50, font="Arial 15 bold", bg="#202d42").grid(row=i, column=1)
@@ -485,24 +486,22 @@ def getPage3():
 
 ######################################## Home Page ####################################
 tk.Label(pages[0], text="Criminal Identification System", fg="white", bg="#202d42",
-      font="Arial 35 bold", pady=30).pack()
+         font="Arial 35 bold", pady=30).grid(row=0, column=0, columnspan=2)
 
 logo = tk.PhotoImage(file = "logo.png")
-tk.Label(pages[0], image=logo, bg="#202d42").pack()
+tk.Label(pages[0], image=logo, bg="#202d42").grid(row=1, column=0, columnspan=2)
 
-btn_frame = tk.Frame(pages[0], bg="#202d42", pady=30)
-btn_frame.pack()
+tk.Button(pages[0], text="Register Criminal", command=getPage1, font="Arial 20", width=17, bg="#2196f3",
+          fg="white", pady=15, bd=0, highlightthickness=0, activebackground="#091428",
+          activeforeground="white").grid(row=2, column=0, padx=50, pady=30)
 
-tk.Button(btn_frame, text="Register Criminal", command=getPage1)
-tk.Button(btn_frame, text="Detect Criminal", command=getPage2)
-tk.Button(btn_frame, text="Video Surveillance", command=getPage3)
+tk.Button(pages[0], text="Detect Criminal", command=getPage2, font="Arial 20", width=17, bg="#2196f3",
+          fg="white", pady=15, bd=0, highlightthickness=0, activebackground="#091428",
+          activeforeground="white").grid(row=2, column=1, padx=50, pady=30)
 
-for btn in btn_frame.winfo_children():
-    btn.configure(font="Arial 20", width=17, bg="#2196f3", fg="white",
-        pady=15, bd=0, highlightthickness=0, activebackground="#091428", activeforeground="white")
-    btn.pack(pady=30)
-
-
+tk.Button(pages[0], text="Video Surveillance", command=getPage3, font="Arial 20", width=17, bg="#2196f3",
+          fg="white", pady=15, bd=0, highlightthickness=0, activebackground="#091428",
+          activeforeground="white").grid(row=3, column=0, columnspan=2, pady=30)
 
 pages[0].lift()
 root.mainloop()
